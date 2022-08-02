@@ -1,0 +1,14 @@
+h1{
+    text-align: center;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 50vh;
+    min-width: 500px;
+    min-height: 500px;
+    margin: 50px auto;
+    border: 1px solid black;
+}
