@@ -1,3 +1,4 @@
+// module for game board object
 const gameBoard = (() => {
     let board = [
         ['', '', ''],
@@ -8,20 +9,84 @@ const gameBoard = (() => {
     return {board};
 })();
 
+// factory for player object
 const Player = (name, sign, onTurn) => {
     return {name, sign, onTurn};
 };
 
+// module for display controller object
 const displayController = (() => {
     let player1 = Player("player 1", 'X', true);
     let player2 = Player("player 2", 'O', false);
 
+    // implementing all possible solutions for winning the game
     const gameLogic = (playerSign) => {
+        const winner = document.querySelector("#winner");
         if(gameBoard.board[0][0] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[2][2] === playerSign){
-            console.log("Finished");
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else if (gameBoard.board[0][2] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[2][0] === playerSign){
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else if (gameBoard.board[0][0] === playerSign && gameBoard.board[1][0] === playerSign && gameBoard.board[2][0] === playerSign){
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else if (gameBoard.board[0][1] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[2][1] === playerSign){
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else if (gameBoard.board[0][2] === playerSign && gameBoard.board[1][2] === playerSign && gameBoard.board[2][2] === playerSign){
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else if (gameBoard.board[0][0] === playerSign && gameBoard.board[0][1] === playerSign && gameBoard.board[0][2] === playerSign){
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else if (gameBoard.board[1][0] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[1][2] === playerSign){
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else if (gameBoard.board[2][0] === playerSign && gameBoard.board[2][1] === playerSign && gameBoard.board[2][2] === playerSign){
+            if(player1.sign === playerSign){
+                winner.textContent = player1.name + " wins!";
+            }else {
+                winner.textContent = player2.name + " wins!";
+            }
+        } else {
+            let counter = 0;
+            for(let i = 0; i<3; i++){
+                for(let j = 0; j<3; j++){
+                    if(gameBoard.board[i][j] !== ''){
+                        counter++;
+                    }
+                }
+            }
+
+            if(counter === 9){
+                winner.textContent = "It's a tie!";
+            }
         }
     };
 
+    // function for displayin the board
     const displayBoard = () => {
         const container = document.querySelector("#container");
         for(let i = 0; i < 3; i++){
@@ -72,7 +137,7 @@ const displayController = (() => {
                         }
                     }
                     
-                })
+                });
 
                 row.appendChild(column);
             }
