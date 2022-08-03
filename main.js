@@ -16,60 +16,29 @@ const Player = (name, sign, onTurn) => {
 
 // module for display controller object
 const displayController = (() => {
-    let player1 = Player("player 1", 'X', true);
-    let player2 = Player("player 2", 'O', false);
+    //let player1 = Player("player1Name", 'X', true);
+    //let player2 = Player("player2Name", 'O', false);
 
     // implementing all possible solutions for winning the game
-    const gameLogic = (playerSign) => {
+    const _gameLogic = (player) => {
         const winner = document.querySelector("#winner");
+        let playerSign = player.sign;
         if(gameBoard.board[0][0] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[2][2] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else if (gameBoard.board[0][2] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[2][0] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else if (gameBoard.board[0][0] === playerSign && gameBoard.board[1][0] === playerSign && gameBoard.board[2][0] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else if (gameBoard.board[0][1] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[2][1] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else if (gameBoard.board[0][2] === playerSign && gameBoard.board[1][2] === playerSign && gameBoard.board[2][2] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else if (gameBoard.board[0][0] === playerSign && gameBoard.board[0][1] === playerSign && gameBoard.board[0][2] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else if (gameBoard.board[1][0] === playerSign && gameBoard.board[1][1] === playerSign && gameBoard.board[1][2] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else if (gameBoard.board[2][0] === playerSign && gameBoard.board[2][1] === playerSign && gameBoard.board[2][2] === playerSign){
-            if(player1.sign === playerSign){
-                winner.textContent = player1.name + " wins!";
-            }else {
-                winner.textContent = player2.name + " wins!";
-            }
+            winner.textContent = player.name + " wins!";
         } else {
             let counter = 0;
             for(let i = 0; i<3; i++){
@@ -85,10 +54,12 @@ const displayController = (() => {
             }
         }
     };
-
+    
     // function for displayin the board
-    const displayBoard = () => {
+    const displayBoard = (player1, player2) => {
         const container = document.querySelector("#container");
+        console.log("displayBoard p1: " + player1.name + " p2: " + player2.name);
+
         for(let i = 0; i < 3; i++){
             let row = document.createElement("div");
             let rowId = "row" + i;
@@ -99,8 +70,9 @@ const displayController = (() => {
             row.style.borderBottom = "1px solid black";
             for (let j = 0; j < 3; j++){
                 let column = document.createElement("div");
-                let columnId = rowId + "column" + j;
-                column.setAttribute("id", columnId);
+                //let columnId = rowId + "column" + j;
+                //column.setAttribute("id", columnId);
+                column.setAttribute("class", "column");
                 column.style.flexGrow = "1";
                 column.style.display = "flex";
                 column.style.borderLeft = "1px solid black";
@@ -126,14 +98,14 @@ const displayController = (() => {
                             console.log(gameBoard.board);
                             player1.onTurn = false;
                             player2.onTurn = true;
-                            gameLogic(player1.sign);
+                            _gameLogic(player1);
                         }else{
                             signHolder.textContent = player2.sign;
                             gameBoard.board[i][j] = player2.sign;
                             console.log(gameBoard.board);
                             player2.onTurn = false;
                             player1.onTurn = true;
-                            gameLogic(player2.sign);
+                            _gameLogic(player2);
                         }
                     }
                     
@@ -144,16 +116,33 @@ const displayController = (() => {
 
             container.appendChild(row);
         }
+
     };
 
     return {
-        displayBoard,
-        player1,
-        player2
+        displayBoard
     };
 })();
 
-displayController.displayBoard();
+const startGameButton = document.querySelector("#startGame");
+startGameButton.addEventListener("click", () => {
+    /*const inputPlayer1 = document.querySelector("#player1Name");
+    let p1Name = inputPlayer1.value;
+
+    const inputPlayer2 = document.querySelector("#player2Name");
+    let p2Name = inputPlayer2.value;
+
+    const winner = document.querySelector("#winner");
+    winner.textContent = p1Name + " " + p2Name;*/
+
+    let player1 = Player("p1Name", 'X', true);
+    let player2 = Player("p2Name", 'O', false);
+    displayController.displayBoard(player1, player2);
+})
+//displayController.displayBoard();
+
+
+
 
 
 

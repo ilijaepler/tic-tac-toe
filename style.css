@@ -28,6 +28,7 @@ h1{
     min-height: 500px;
     margin: 50px auto;
     font-size: 40px;
+    border: 1px solid black;
 }
 
 form{
