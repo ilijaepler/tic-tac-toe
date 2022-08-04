@@ -45,6 +45,7 @@ label{
 }
 
 input{
+    text-align: center;
     font-family: 'Catamaran', sans-serif;
     margin-top: 30px;
     margin-bottom: 30px;

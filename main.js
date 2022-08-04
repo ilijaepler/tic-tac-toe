@@ -132,9 +132,6 @@ startGameButton.addEventListener("click", () => {
     const inputPlayer2 = document.querySelector("#player2Name");
     let p2Name = inputPlayer2.value;
 
-    const winner = document.querySelector("#winner");
-    winner.textContent = p1Name + " " + p2Name;
-
     let player1 = Player(p1Name, 'X', true);
     let player2 = Player(p2Name, 'O', false);
     displayController.displayBoard(player1, player2);
