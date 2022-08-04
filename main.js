@@ -126,20 +126,20 @@ const displayController = (() => {
 
 const startGameButton = document.querySelector("#startGame");
 startGameButton.addEventListener("click", () => {
-    /*const inputPlayer1 = document.querySelector("#player1Name");
+    const inputPlayer1 = document.querySelector("#player1Name");
     let p1Name = inputPlayer1.value;
 
     const inputPlayer2 = document.querySelector("#player2Name");
     let p2Name = inputPlayer2.value;
 
     const winner = document.querySelector("#winner");
-    winner.textContent = p1Name + " " + p2Name;*/
+    winner.textContent = p1Name + " " + p2Name;
 
-    let player1 = Player("p1Name", 'X', true);
-    let player2 = Player("p2Name", 'O', false);
+    let player1 = Player(p1Name, 'X', true);
+    let player2 = Player(p2Name, 'O', false);
     displayController.displayBoard(player1, player2);
 })
-//displayController.displayBoard();
+
 
 
 
