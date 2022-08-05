@@ -137,7 +137,7 @@ startGameButton.addEventListener("click", () => {
     displayController.displayBoard(player1, player2);
 })
 
-
+// test
 
 
 
